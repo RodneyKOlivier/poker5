@@ -16147,4 +16147,8 @@ var tooltip = $.widget( "ui.tooltip", {
 
 
 
+<<<<<<< HEAD
 }));
+=======
+}));
+>>>>>>> 06760c465f78f0ef89e28a2069aac7eda954d2f0
