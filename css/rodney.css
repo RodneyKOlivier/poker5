@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+html, body {height:100%;}
+
+#container {
+	position:relative;
+	/*margin: 0 0 0 -100px;*/
+	min-height:100%;
+	overflow:auto;
+	z-index:100;
+}
+
+header, footer{
+	background-color:#00C; 
+	color:#fff; 
+	font-weight:bold;
+	height:50px;
+	width:100%;
+	line-height:50px;
+	padding-left:10px;
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  margin: 0px;
+  padding: 0px;
+  z-index:1;
+  clear:both;
+}
+
+.clicked { text-decoration:line-through; }
+li.ClickLi:hover { cursor:pointer;}
+
+#centerElement{
+	padding-left:10px;
+	width:50%;
+	border:1px #ABABAB solid;
+	background-color:#F2F2F2;
+	color:#000;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+#leftColumn {position:relative; float:left; width:25%; min-width:200px;}
+#rightColumn {position:relative; float:left; width:70%;min-width:400px;}
+h3 {
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+#centerElement p, ul {
+	margin-top:0px;
+	padding-top:0px;
+}
+.textArea {width:95%;}
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}

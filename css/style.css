@@ -1,0 +1,910 @@
+/*************************
+* author: Rodney Olivier;
+* date:06/29/2014
+* version: 0.1.0
+* last modified date 07/10/2014
+* copyright©2014
+**************************/
+ body, header, nav, article, footer {
+	zoom:100%;
+	width:99%;
+	min-width: 900px;
+	margin:0 auto;
+	text-align:center;
+	font-weight:12px;
+	font-family:"Times New Roman",Georgia,Serif;
+	/*font-family: "Arial,Verdana,sans-serif";*/
+	
+}
+
+body {
+	font-size:1.0em;
+	font-weight:bold;
+	min-width:100%;
+	width:100%;
+   	background-color:#CCC; 
+	margin: 10px 10px; 
+
+}
+
+#container {
+	/*  position:relative;  */
+	/*margin: 0 0 0 -100px;*/
+	 /* min-height:100%;
+	overflow:auto;
+	z-index:100; */ 
+}
+
+body { 
+	background: rgb(180,221,180); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNiNGRkYjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxNyUiIHN0b3AtY29sb3I9IiM4M2M3ODMiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIzMyUiIHN0b3AtY29sb3I9IiM1MmIxNTIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI2NyUiIHN0b3AtY29sb3I9IiMwMDhhMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI4MyUiIHN0b3AtY29sb3I9IiMwMDU3MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAyNDAwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(180,221,180,1) 0%, rgba(131,199,131,1) 17%, rgba(82,177,82,1) 33%, rgba(0,138,0,1) 67%, rgba(0,87,0,1) 83%, rgba(0,36,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(180,221,180,1)), color-stop(17%,rgba(131,199,131,1)), color-stop(33%,rgba(82,177,82,1)), color-stop(67%,rgba(0,138,0,1)), color-stop(83%,rgba(0,87,0,1)), color-stop(100%,rgba(0,36,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */	
+}
+
+footer article {clear:both;}
+
+nav ul li{display:inline-block;}
+
+body article{margin: 0 auto; width:100%;}
+
+body article div {position:relative;}
+
+h1{ color:red;}
+
+.center { margin: 0 auto;}
+
+
+.black{color:black; border-color:black;}
+
+.red{ color:red; border-color:red;}
+
+.borderRadius5
+{
+	border:3px solid white;
+	border-radius: 5px;
+}
+.borderPlus{
+	border:3px solid white;
+	/* background: rgb(201,222,150,0.5); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNjOWRlOTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI0NCUiIHN0b3AtY29sb3I9IiM4YWI2NmIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzk4MjM1IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(201,222,150,1) 0%, rgba(138,182,107,1) 44%, rgba(57,130,53,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(201,222,150,1)), color-stop(44%,rgba(138,182,107,1)), color-stop(100%,rgba(57,130,53,1))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+}
+
+.borderPlus25 {
+	
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNjOWRlOTYiIHN0b3Atb3BhY2l0eT0iMC4yNSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzk4MjM1IiBzdG9wLW9wYWNpdHk9IjAuMjUiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(201,222,150,0.25) 0%, rgba(57,130,53,0.25) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(201,222,150,0.25)), color-stop(100%,rgba(57,130,53,0.25))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(201,222,150,0.25) 0%,rgba(57,130,53,0.25) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(201,222,150,0.25) 0%,rgba(57,130,53,0.25) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(201,222,150,0.25) 0%,rgba(57,130,53,0.25) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(201,222,150,0.25) 0%,rgba(57,130,53,0.25) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40c9de96', endColorstr='#40398235',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+	
+}
+
+span.ui-button-text
+{
+    color: #470F0E; /*#1c94c4;*/
+    font-weight: bold;
+}
+
+#handBlock {
+	padding-bottom:0px;
+}
+
+.shadowBox_Inset{
+	-webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);	
+	-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.cardId { position:absolute; left:-100px; text-align:center; margin-top:0; visibility:hidden;}
+
+.cardLiHi { 
+	/*border: 3px solid red; z-index:100; */
+	border-color: rgba(255, 0 , 0, .9);
+	border-style: solid;
+	border-width:5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+}
+
+.hidden{display:none;}
+
+.status {font-size:90%;}
+
+div article#helpText {
+	text-align: left;
+	margin: 0 auto;
+	width: 50%;
+	font-size:1em;
+	color:#FFF;
+}
+
+.scale50{transform:scale(0.5,0.5);}
+.scale70{transform:scale(0.7,0.7);}
+
+#callBlock{
+	position: absolute;
+    top: 150px;
+	border:5px solid #FCE78C;
+	
+	background: rgb(254,252,234); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZWZjZWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjFkYTM2IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(254,252,234,1) 0%, rgba(241,218,54,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(254,252,234,1)), color-stop(100%,rgba(241,218,54,1))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */ 
+	-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75); 
+
+}
+.copyright {
+	text-align:center;
+	color: rgba(252,231,140, .5);
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 400px) and (max-width : 800px)
+{
+	/* Styles */
+	body, header, nav, article, footer {
+		font-size: 1em;
+		font-weight: bold;
+		margin: 0 auto;
+		min-width: 321px;
+		text-align: center;
+		width: 99%;
+	}
+	body{
+		font-size: 0.9em;
+		font-weight: bold;
+	}
+	#container {
+		margin:0 auto;
+		width:800px;
+		height:600px;
+	}
+	#centerElement{
+		/* padding-left:10px;
+		width:99%;
+		color:#000; */
+		background-image: url("../image/tatooine_jeanette-002-1024x768.png");
+		background-repeat: no-repeat;
+		transform:scale(0.85,0.85);
+		margin:0 auto; 
+		width:800px;
+		height:600px;
+		
+		border:5px solid #FCE78C;
+		/*border:5px solid gray;*/
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; 
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75); 
+	}
+	
+	.card {
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:50px; 
+		border-style: solid;
+		border-width:5px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.cardHighlight {
+		/* border-color: rgba(255, 0 , 0, .5);
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; */
+	}
+
+	.card-back {
+	   display:inline-block;
+	   background-image: url("../image/cardback-desert-sun.png");
+	   opacity:0.4;
+	   background-repeat: no-repeat;
+	   /* width:167px; */
+	   width:125px;
+	   /* height:250px; */
+	   height:187px;
+	   
+	}
+
+	.card-front{
+	   display:inline-block;
+	   background-image: url("../image/cardfront-red.png");
+	   background-repeat: no-repeat;
+	   width:125px;
+	   height:187px;
+	}
+	.statusBlock
+	{
+		border: 3px solid rgba(252, 231, 140, 0.7);
+		width: 92%;
+		margin-top:100px;
+		color:rgba(252,231,140,0.9);
+		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
+		font-size:1em;
+		/* color: rgba(87, 27, 0, 1.0); */
+	}
+	div.suiteLeft{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		/* line-height:72px; */
+	}
+	div.suiteCenter{
+		text-align:center;
+		width:99%; 
+		/* line-height:105px; */
+	}
+
+	div.suiteRight{
+		text-align:right;
+		width:120;
+		position:relative;
+		/* line-height:72px; */
+	}
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+	/* Styles */
+
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 480px) 
+{
+	/* Styles */
+	@charset "utf-8";
+	/* CSS Document */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) 
+{
+	/* Styles */
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-width : 802px) and (max-width : 1026px)  and (orientation : landscape)
+{
+	/* Styles */
+	body, header, nav, article, footer 
+	{
+		font-size: 0.92em;
+		font-weight: bold;
+		margin: 0 auto;
+		min-width: 600px;
+		text-align: center;
+		width: 99%;
+	}
+	#container 
+	{
+		margin:0 auto;
+		width:640px;
+		height:480px;
+	}
+	#centerElement
+	{
+		/* padding-left:10px;
+		width:99%;
+		color:#000; */
+		 background-image: url("../image/tatooine_jeanette-002-640x480.png");
+		background-repeat: no-repeat;
+		margin:0 auto; 
+		width:640px;
+		height:480px;
+		/*border:5px solid #FCE78C;*/
+		border:5px solid red;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; 
+		 -webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75); 
+	}
+	
+	.input {
+		width:60px; 
+		height:22px; 
+		border-radius: 3px;
+	}
+	html body div#container div#centerElement header h1
+	{
+		font-size: 1.9em;
+	}
+	.card
+	{
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:1.2em; 
+		/*
+		height:250px; 
+		width:149px;
+		*/
+		/*border-color: rgba(0, 255 , 0, .5);*/
+		border-style: solid;
+		border-width:5px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.cardHighlight 
+	{
+		/* border-color: rgba(255, 0 , 0, .5);
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; */
+	}
+
+	.card-back 
+	{
+	   display:inline-block;
+	   background-image: url("../image/cardback-desert-sun-150x100.png");
+	   opacity:0.9;
+	   background-repeat: no-repeat;
+	   width:100px;
+	   height:150px;	
+	}
+
+	.card-front
+	{
+	   display:inline-block;
+	   background-image: url("../image/cardfront-red.png");
+	   background-repeat: no-repeat;
+	   width:100px;
+	   height:150px;
+	}
+	div.ui-dialog h3
+	{
+		font-size: 0.9em;
+		margin:0 auto 2px;
+		/* margin-top: 0px;
+		margin-bottom: 2px;
+		margin-left: auto;
+		margin-right: auto; */
+	}
+	.card-call
+	{
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:1em; 
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.card-front-call
+	{
+		display:inline-block;
+		background-image: url("../image/cardfront-red.png");
+		background-repeat: no-repeat;
+		width:50px;/*125*/
+		height:75px;/*185*/
+	}
+	
+	.statusBlock 
+	{
+		border:3px solid rgba(252,231,140,0.7);
+		width: 97%;
+		margin-top:50px;
+		color:rgba(252,231,140,0.9);
+		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
+	}
+	
+	article#handBlock div
+	{
+		font-size: 1.5em;
+	}
+	
+	article#callBlock div
+	{
+		font-size: 1.5em;
+	}
+	div.player
+	{
+		display: inline-block; 
+		vertical-align: top; 
+		line-height: 84px;
+		margin-right: 2px
+	}
+	div.winner 
+	{
+		color: rgba(196,0,0,1);
+	}
+	/*html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div#ui-id-1.ui-dialog-content.ui-widget-content*/
+	div.rank
+	{
+		display: inline-block;
+		line-height: 85px;
+		vertical-align:top;
+		margin-left:2px;
+	}
+	div.suiteLeft
+	{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		/* line-height:72px; */
+	}
+
+	div.suiteCenter
+	{
+		text-align:center;
+		width:99%; 
+		line-height:82px;
+	}
+
+	div.suiteRight
+	{
+		text-align:right;
+		width:96px;
+		position:relative;
+		/* line-height:72px; */
+	}
+	div.card-front-call.card-call 
+	{
+		font-size:1em; /*2*/
+	}
+	div.suiteLeft-call
+	{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		/*line-height:72px;*/
+	}
+	div.suiteCenter-call
+	{
+		text-align:center;
+		width:99%; 
+		line-height:35px;/*95*/
+	}
+	div.suiteRight-call
+	{
+		text-align:right;
+		position:relative;
+		/* line-height:72px; */
+		width:45px;/*117*/
+	}
+
+	footer
+	{
+		position:relative;
+		/* top:570px; */
+	}
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) 
+{
+	/* Styles */
+	body, header, nav, article, footer {
+		font-size: 1.1em;
+		font-weight: bold;
+		margin: 0 auto;
+		min-width: 750px;
+		text-align: center;
+		width: 99%;
+	}
+	#container {
+		margin:0 auto;
+		width:1024px;
+		height:768px;
+	}
+	#centerElement{
+		/* padding-left:10px;
+		width:99%;
+		color:#000; */
+		/* background-image: url("../image/tatooine_jeanette-002-1024x768.png"); */
+		background-repeat: no-repeat;
+		margin:0 auto; 
+		width:900px;
+		height:700px;
+		/*border:5px solid #FCE78C;*/
+		border:5px solid red;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; 
+		 -webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75); 
+	}
+	
+	.card {
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:50px; 
+		border-style: solid;
+		border-width:5px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.cardHighlight {
+		/* border-color: rgba(255, 0 , 0, .5);
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; */
+	}
+
+	.card-back {
+	   display:inline-block;
+	   background-image: url("../image/cardback-desert-sun.png");
+	   opacity:0.4;
+	   background-repeat: no-repeat;
+	   /* width:167px; */
+	   width:125px;
+	   /* height:250px; */
+	   height:187px;
+	   
+	}
+
+	.card-front{
+	   display:inline-block;
+	   background-image: url("../image/cardfront-red.png");
+	   background-repeat: no-repeat;
+	   width:125px;
+	   height:187px;
+	}
+	.statusBlock
+	{
+		border: 3px solid rgba(252, 231, 140, 0.7);
+		width: 92%;
+		margin-top:75px;
+		color:rgba(252,231,140,0.9);
+		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
+		/* color: rgba(87, 27, 0, 1.0); */
+	}
+	div.suiteLeft{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		/* line-height:72px; */
+	}
+	div.suiteCenter{
+		text-align:center;
+		width:99%; 
+		/* line-height:105px; */
+	}
+
+	div.suiteRight{
+		text-align:right;
+		width:120;
+		position:relative;
+		margin-bottom:5px;
+		/* line-height:72px; */
+	}
+}
+/* Older Desktops and laptops ----------- */
+@media only screen and (min-width : 800px) and (max-width : 1024px)
+{
+	/* Styles */	
+	
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px)
+{
+	/* Styles */
+	body 
+	{
+		height:768px;
+	}
+	body div#container
+	{
+		position: absolute;
+		display:block;
+		
+		height:100%;
+		width:100%;
+		top:0px;
+		left:0px;
+		/*z-index:-1;*/
+	} 
+	
+	#container 
+	{
+		margin:0 auto;
+		width:1024px;
+		height:768px;
+	} 
+	#centerElement
+	{
+		
+		position:relative;
+		top:0px;
+		
+		/* background-image: url("../image/tatooine-001.png"); */
+		background-image: url("../image/tatooine_jeanette-002-1024x768.png");
+		background-repeat: no-repeat;
+		transform:scale(0.9,0.9);
+		margin:0 auto;
+		width: 1024px;
+		height: 768px;
+		border:5px solid #FCE78C;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	}
+	.input {
+		width:60px; 
+		height:29px; 
+		border-radius: 3px;
+	}
+	.card
+	{
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:1.2em; 
+		/*
+		height:250px; 
+		width:149px;
+		*/
+		/*border-color: rgba(0, 255 , 0, .5);*/
+		border-style: solid;
+		border-width:5px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.cardHighlight 
+	{
+		/* border-color: rgba(255, 0 , 0, .5);
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px; */
+	}
+
+	.card-back 
+	{
+	   display:inline-block;
+	   background-image: url("../image/cardback-desert-sun.png");
+	   opacity:0.9;
+	   background-repeat: no-repeat;
+	   width:167px;
+	   height:250px;	
+	}
+
+	.card-front
+	{
+	   display:inline-block;
+	   background-image: url("../image/cardfront-red.png");
+	   background-repeat: no-repeat;
+	   width:167px;
+	   height:250px;
+	}
+	div.ui-dialog h3
+	{
+		font-size: 0.9em;
+		margin:0 auto 2px;
+		/* margin-top: 0px;
+		margin-bottom: 2px;
+		margin-left: auto;
+		margin-right: auto; */
+	}
+	.card-call
+	{
+		display:inline-block; 
+		top:0px; position:relative; 
+		font-size:1em; 
+		border-style: solid;
+		border-width:3px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);
+		box-shadow:         inset 0px 0px 6px 6px rgba(50, 50, 50, 0.75);	
+	}
+	.card-front-call
+	{
+		display:inline-block;
+		background-image: url("../image/cardfront-red.png");
+		background-repeat: no-repeat;
+		width:50px;/*125*/
+		height:75px;/*185*/
+	}
+	
+	.statusBlock 
+	{
+		border:3px solid rgba(252,231,140,0.7);
+		width: 95%;
+		margin:50px auto 0;
+		color:rgba(252,231,140,0.9);
+		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
+	}
+	
+	article#handBlock div
+	{
+		font-size: 2.0em;
+	}
+	
+	article#callBlock div
+	{
+		font-size: 1.5em;
+	}
+	div.player
+	{
+		display: inline-block; 
+		vertical-align: top; 
+		line-height: 84px;
+		margin-right: 2px
+	}
+	div.winner 
+	{
+		background-color: rgba(196,0,0,1);
+		color:#ffffff;
+		font-weight: bolder;
+	}
+	/*html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div#ui-id-1.ui-dialog-content.ui-widget-content*/
+	div.rank
+	{
+		display: inline-block;
+		line-height: 85px;
+		vertical-align:top;
+		margin-left:2px;
+	}
+	div.suiteLeft
+	{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		line-height:72px;
+	}
+
+	div.suiteCenter
+	{
+		text-align:center;
+		width:99%; 
+		line-height:105px;
+	}
+
+	div.suiteRight
+	{
+		text-align:right;
+		width:160px;
+		position:relative;
+		line-height:72px;
+	}
+	div.card-front-call.card-call 
+	{
+		font-size:1em; /*2*/
+	}
+	div.suiteLeft-call
+	{
+		text-align:left;width:99%;
+		margin-left:5px; 
+		margin-top:0px; 
+		position:relative;
+		top:0px;
+		/*line-height:72px;*/
+	}
+	div.suiteCenter-call
+	{
+		text-align:center;
+		width:99%; 
+		line-height:35px;/*95*/
+	}
+	div.suiteRight-call
+	{
+		text-align:right;
+		position:relative;
+		/* line-height:72px; */
+		width:45px;/*117*/
+	}
+
+	footer
+	{
+		position:absolute;
+		top:570px;
+	}
+	
+	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
+		background: url("../image/tatooine_jeanette-1024x768.png") no-repeat ;
+		background-color:#CDCDCD;
+		opacity: 0.9;
+		border: 1px solid #dddddd;
+		color: #ffffff;
+	}
+	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div.ui-dialog-content.ui-widget-content div.player h3,
+	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div.ui-dialog-content.ui-widget-content div.rank
+	{
+		color: #ffffff;
+	}
+	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable#helpText
+	/* html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div.ui-dialog-content.ui-widget-content article#helpText */
+	{
+		opacity: 1.0;
+	}
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+	#centerElement{
+		border:5px solid white;
+	}
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+	#centerElement{
+		border:5px solid white;
+	}
+}
+

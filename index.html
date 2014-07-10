@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<head>
+<!-- 
+	author: Rodney Olivier;
+	date:06/29/2014
+	version: 0.1.0
+	last modified date 07/10/2014
+	copyright©2014
+-->
+<meta charset="utf-8">
+<title>Five Card Draw</title>
+<meta name="Five-Card-Draw " content="poker 5 card draw">
+<meta name="keywords" content="poker 5 card draw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<link rel="stylesheet" type="text/css" href="js/vendor/jquery-ui.css" />
+
+</head>
+<body>
+	<div id="container">
+		<div id="centerElement">
+	<header>
+		<h1 >Five Card Draw</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="#" class="button" id="newGame" >New Game</a></li>
+			<!-- <li><a href="#" class="button" id="shuffle" >Shuffle</a></li>
+			<li><a href="#" class="button" id="deal" >Deal</a></li> -->
+			<li><a href="#" class="button" id="discard" >Discard</a></li>
+			<li><a href="#" class="button" id="draw" >Draw</a></li>
+			<li><a href="#" class="button" id="call" >Call</a></li>
+			<li><a href="#" class="button" disabled="disabled" id="nextRound" >Next Round</a></li>
+			<li><a href="#" class="button" id="help" >User Guide</a></li>
+			
+		</ul>
+	</nav>
+	
+	<article id="handBlock">
+	<h3>Player 1</h3>
+		<div class="card-back card" id="card0" ></div>
+		<div class="card-back card" id="card1" ></div>
+		<div class="card-back card" id="card2" ></div>
+		<div class="card-back card" id="card3" ></div>
+		<div class="card-back card" id="card4" ></div>
+	</article>
+	<article id="callBlock" class="hidden">
+		<div id="player0"></div>
+		<div id="player1"></div>
+		<div id="player2"></div>
+		<div id="player3"></div>
+		<div id="player4"></div>
+	</article>
+	<footer>
+		<article class="statusBlock shadowBox_Inset "><!-- borderPlus25 -->
+			<p>
+				<label for="bet"><span id="betLable">Ante: </span><input class="input" id="bet" type="text" name="betQuantity" min="1" max="100" value="2"></label>
+				<button id="submitBet"  class="button"  type="button" >Place Bet</button>
+				<label for="numberOfPlayers">Number of Players: <input class="input" id="numberOfPlayers" type="text" name="quantity" min="2" max="5" value="2"></label>
+				<span >Coins In the Bank:</span><span id="playerCash">100</span>
+			</p>
+			<p id="status" class="status_message"></p>
+			<p class="status"><span id="deckCount"></span><span>&nbsp;|&nbsp;</span><span id="handCount"></span>&nbsp;|&nbsp;<span id="handRank"></span></p>
+			<p class="hidden" id="statusMessage"></p>
+		</article>
+		<p class="copyright">code:copyright©2014 Rodney Olivier images:copyright©2014 Jeanette A Gogan-Olivier</p>
+	</footer>
+	</div>
+	</div> <!-- end container -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery-ui.js"></script>
+	<!-- <script src="js/jquery.challenges.js"></script> -->
+	<!-- <script type="text/javascript" src="js/hflip.js"></script> I may still use this to animate the cards -->
+	<script src="js/cardGame.js"></script>
+	
+	<!-- 
+		Rodney add notes here to explain actions and modification to the specification.
+	-->
+</body>
+</html>
