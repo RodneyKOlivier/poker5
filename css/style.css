@@ -165,7 +165,8 @@ div article#helpText {
 
 }
 .copyright {
-	text-align:center;
+	text-align:left;
+	margin-left:150px;
 	color: rgba(252,231,140, .5);
 }
 /* Smartphones (landscape) ----------- */
@@ -193,7 +194,7 @@ div article#helpText {
 		/* padding-left:10px;
 		width:99%;
 		color:#000; */
-		background-image: url("../image/tatooine_jeanette-002-1024x768.png");
+		background-image: url("../image/2MoonsAtTwilight1024x768.png");
 		background-repeat: no-repeat;
 		transform:scale(0.85,0.85);
 		margin:0 auto; 
@@ -329,7 +330,7 @@ div article#helpText {
 		/* padding-left:10px;
 		width:99%;
 		color:#000; */
-		 background-image: url("../image/tatooine_jeanette-002-640x480.png");
+		 background-image: url("../image/2MoonsAtTwilight640x480.png");
 		background-repeat: no-repeat;
 		margin:0 auto; 
 		width:640px;
@@ -549,7 +550,7 @@ div article#helpText {
 		/* padding-left:10px;
 		width:99%;
 		color:#000; */
-		/* background-image: url("../image/tatooine_jeanette-002-1024x768.png"); */
+		background-image: url("../image/2MoonsAtTwilight1024x768.png");
 		background-repeat: no-repeat;
 		margin:0 auto; 
 		width:900px;
@@ -676,7 +677,7 @@ div article#helpText {
 		top:0px;
 		
 		/* background-image: url("../image/tatooine-001.png"); */
-		background-image: url("../image/tatooine_jeanette-002-1024x768.png");
+		background-image: url("../image/2MoonsAtTwilight1024x768.png");
 		background-repeat: no-repeat;
 		transform:scale(0.9,0.9);
 		margin:0 auto;
@@ -871,7 +872,7 @@ div article#helpText {
 	}
 	
 	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
-		background: url("../image/tatooine_jeanette-1024x768.png") no-repeat ;
+		background: url("../image/2MoonsAtTwilight1024x768.png") no-repeat ;
 		background-color:#CDCDCD;
 		opacity: 0.9;
 		border: 1px solid #dddddd;
