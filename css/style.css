@@ -782,6 +782,7 @@ div article#helpText {
 		margin:50px auto 0;
 		color:rgba(252,231,140,0.9);
 		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
+		height:160px;
 	}
 	
 	article#handBlock div
@@ -868,7 +869,7 @@ div article#helpText {
 	footer
 	{
 		position:absolute;
-		top:570px;
+		top:455px;
 	}
 	
 	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable {
@@ -888,6 +889,7 @@ div article#helpText {
 	{
 		opacity: 1.0;
 	}
+	
 }
 
 /* Large screens ----------- */
