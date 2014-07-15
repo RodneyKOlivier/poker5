@@ -229,6 +229,16 @@ console.log(vhtml);
 				}
 			}
 			$('#nextRound').prop('disabled', true);
+			npcHtml = '';
+			for(x = 1; x < numberOfPlayers; x++)
+			{
+				npcHtml+= '<div class="playerStatus" id="player"'+x+'">Player'+(x+1)+' Stat:_____ </div>';
+				/* if(numberOfPlayers > 2 && x < 4)
+				{
+					npcHtml+= '<div class="playerStatus">&nbsp;|&nbsp;</div>';
+				} */
+			}
+			$('#npcContainer').html(npcHtml);
 		});
 	}								
 	function nextRound()

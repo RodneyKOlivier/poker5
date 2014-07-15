@@ -169,6 +169,21 @@ div article#helpText {
 	margin-left:150px;
 	color: rgba(252,231,140, .5);
 }
+
+.playerStatus {
+	display:inline-block;
+	border:1px solid #C5A762;
+	width:auto;
+	height:30px;
+	line-height:25px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+	-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	
+}
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 400px) and (max-width : 800px)
 {
