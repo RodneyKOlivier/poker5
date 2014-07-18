@@ -1,10 +1,11 @@
-/*************************
+/*****************************************************
 * author: Rodney Olivier;
 * date:06/29/2014
 * version: 0.1.0
-* last modified date 07/10/2014
-* copyright©2014
-**************************/
+* last modified date 07/17/2014
+* contact: rodneyolivier@live.com
+* copyright©2014 Rodney Olivier License Apache 2
+*****************************************************/
 $(document).ready(function(){
 /* console.log(window.screen.width);
 console.log(window.screen.height);*/
@@ -222,6 +223,7 @@ $("#standPat").button("disable");
 	function discard()
 	{
 		$("#discard").button("disable");
+		$("#call").button("disable");
 		deckCount = $('#deckCount').text();
 		deckCount = deckCount.split(':');
 		deckCount = deckCount[1];
@@ -276,6 +278,12 @@ $("#standPat").button("disable");
 				buildCard (_data);
 			}
 			$('#status').html(_message);
+		}).done(function(){
+			$("#call").button("enable");
+		}).fail(function(){
+		
+		}).always(function(){
+		
 		});
 	}
 	

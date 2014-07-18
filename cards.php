@@ -1,11 +1,12 @@
 <?php 
-/*************************
+/*****************************************************
 * author: Rodney Olivier;
 * date:06/29/2014
 * version: 0.1.0
 * last modified date 07/09/2014
-* copyright©2014
-************************/
+* contact: rodneyolivier@live.com
+* copyright©2014 Rodney Olivier License Apache 2
+*****************************************************/
 session_start(); 
 
 /* $a = session_id();
