@@ -58,51 +58,67 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 		 public function deal($ante)
 		{
 			$newCards = $_SESSION['Cards'];
-			$_SESSION['Player0']['Bank'];
+			/* $_SESSION['Player0']['Bank']; */
 			$_SESSION['Ante'] = $ante;
-			
 			$_SESSION['WinPool'] = $ante * $_SESSION['PlayerCount'];
 			$handCount = 0;
 			$handArray = array();
 			$sortedHands = array();
+/* debug($_SESSION['PlayerCount']); */
 			for( $p=0; $p < $_SESSION['PlayerCount']; $p++)
 			{
-				$handArray['player'.$p] = array();
-				$_SESSION['Player'.$p]['HandRank'] = '';
-				$_SESSION['Player'.$p]['Bank'] -= $ante;
+				$handArray['player'][$p] = array();
+				$_SESSION['Player'][$p]['HandRank'] = '';
+				$_SESSION['Player'][$p]['Bank'] -= $ante;
 			}
+/* echo '<br>HandArray<br>';
+debug($handArray);
+echo '<br>Player<br>';
+debug($_SESSION['Player']);
+echo '<br>HandCount<br>';
+debug($handCount); */
 			while ( $handCount < 5)
 			{
+/* echo '<br>Count(newcards_<br>';
+debug(count($newCards)); */				
 				if(count($newCards) > 0 )
 				{
 					for($x=0; $x< $_SESSION['PlayerCount']; $x++)
 					{
-						$handArray['player'.$x][] = array_pop($newCards);
+						$handArray['player'][$x]['Hand'][] = array_pop($newCards);
 					}
 					$handCount ++;
 				} 
 				else 
 				{
 					//deliver_response(400,"Deal Not Successful", NULL);
-					break 2;
+					break ;
 				}
 			}
+/* echo '<br>HandArray<br>';
+//debug($handArray); */	
 			$_SESSION['Cards'] = $newCards;
-			for($x=0; $x< $_SESSION['PlayerCount']; $x++)
+			for($x=0; $x < $_SESSION['PlayerCount']; $x++)
 			{
-				$sortedHands['player'.$x] = sortHand($handArray['player'.$x],'Player'.$x);
+/*  debug($handArray['player'][$x], true); */ 				
+				$sortedHands['player'][$x] = sortHand($handArray['player'][$x],$x);
+/* echo '<br>SortedHands<br>';
+debug($sortedHands['player'][$x]); */
 			}
+/* echo '<br>SortedHands<br>';
+debug($sortedHands); */			
 			return $sortedHands;
 		}
 		
 		
-		public function draw($currentHandCount, $newCards, $handArray )
+		public function draw($currentHandCount, $newCards, $player )// $handArray work the player value
 		{
 			$newCards = $_SESSION['Cards'];
 			$cardsDrawn = 0;
 			while ( $currentHandCount < 5){
 				if(count($newCards) > 0 ){ 
-					$handArray[] = array_pop($newCards);
+					//$handArray[] = array_pop($newCards);
+					$_SESSION['Player'][$player]['Hand'][]  = array_pop($newCards);
 					$currentHandCount ++;
 					$cardsDrawn ++;
 				} else { 
@@ -115,9 +131,10 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 					break;
 				}
 			}
-			$_SESSION['HandCount'] = 5;	
+			$_SESSION['Player'][$player]['HandCount'] = 5;
+			//$_SESSION['HandCount'] = 5;	
 			$_SESSION['DeckCount'] = $_SESSION['DeckCount'] - $cardsDrawn;
-			$_SESSION['PlayerHand'] = $handArray;
+			//$_SESSION['PlayerHand'] = $handArray;
 			$_SESSION['Cards'] = $newCards;
 			return true;
 		}
@@ -142,39 +159,55 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 			return false;
 		}
 		
-		public function discard($cardList = null) 
+		public function discard($cardList = null, $player=0) // work the player value
 		{
 			if(!empty($cardList))
 			{
-				$PlayerHand = $_SESSION['PlayerHand'];
+				//$PlayerHand = $_SESSION['Player'][$player]['Hand'];//$_SESSION['PlayerHand'];
 				$discarded = false;
 				foreach($cardList as $index)
 				{
 					// unset the card that matches the index
-					foreach( $PlayerHand as $key=>$value)
+					foreach( $_SESSION['Player'][$player]['Hand'] as $key=>$value)
 					{
 						if($index == $value[0])
 						{
-							unset($PlayerHand[$key]);
+							unset($_SESSION['Player'][$player]['Hand'][$key]);
 							break;
 						} 
 					}
 				}
+				//ksort($_SESSION['Player'][$player]['Hand']);
+
 				$newPlayerHand = array();
-				foreach ($PlayerHand as $value)
+				foreach ($_SESSION['Player'][$player]['Hand'] as $value)
 				{
 					$newPlayerHand[] = $value;
 				}
-				return $newPlayerHand;
+				$_SESSION['Player'][$player]['Hand'] = $newPlayerHand;
+				/*return $newPlayerHand; */
 			}
 			return false;
 		}
 		
-		public function sortHand($handArray,$player)
+		public function placeBet($bet,$player)
+		{
+			if(isset($bet) && $bet > 0 && $bet <= $_SESSION['Player'][$player]['Bank'])
+			{
+/* debug('here',true); */
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		/* public function sortHand($handArray,$player)
 		{
 		
 			return $handArray;
-		}
+		} */
 	}
 	
 //--------------------------------		
@@ -226,28 +259,33 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 			switch ($action)
 			{
 				case 'newGame':
+
 					$cards = new cards();
 					$newCards = $cards->repack();
 					$_SESSION['Cards'] = $newCards;
 					$_SESSION['Shuffled'] = false;
 					$_SESSION['GameStatus'] = 'Started';
 					$_SESSION['DeckCount'] = count($newCards);
+					$_SESSION['Player'] = '';
 					$_SESSION['PlayerHand'] = '0';
 					$_SESSION['NonePlayerHands'] = '';
-					$_SESSION['HandCount'] = '0';
+					//$_SESSION['HandCount'] = '0';
 					$_SESSION['Winner'] = '';
 					$_SESSION['Ante'] = 0;
 					$_SESSION['WinPool'] = 0;
 					$_SESSION['PlayerCount'] = (!empty($playerCount))?$playerCount: 2;
-					for ($p = 0; $p <= $_SESSION['PlayerCount']; $p++)
+					for ($p = 0; $p < $_SESSION['PlayerCount']; $p++)
 					{
-						$_SESSION['Player'.$p]['Bank'] = '100';
-						$_SESSION['Player'.$p]['HandRank'] = '';
-						$_SESSION['Player'.$p]['Bet'] = '';
+						$_SESSION['Player'][$p]['Bank'] = 100;
+						$_SESSION['Player'][$p]['HandRank'] = '';
+						$_SESSION['Player'][$p]['Bet'] = '';
+						$_SESSION['Player'][$p]['HandCount'] = 0;
 					}
+/* echo '<br>Player<br>';
+debug($_SESSION['Player']); */
 					if (!empty($_SESSION['Cards']))
 					{
-						deliver_response(200, "New Game Started", NULL);
+						deliver_response(200, "New Game ".$_SESSION['GameStatus'], NULL);
 					} 
 					else 
 					{
@@ -257,17 +295,28 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 				case 'repack':
 					if(isset($_SESSION['GameStatus']) && $_SESSION['GameStatus'] == 'ended')
 					{
+/* debug($_SESSION['Player'][0]['Bank']);
+debug($_SESSION['Player'][1]['Bank']); */
 						$cards = new cards();
 						$newCards = $cards->repack();
 						$_SESSION['Cards'] = $newCards;
 						$_SESSION['Shuffled'] = false;
 						$_SESSION['DeckCount'] = count($newCards);
 						$_SESSION['PlayerHand'] = '0';
-						$_SESSION['HandCount'] = '0';
+						$_SESSION['Player'][0]['HandCount'] = 0;
+						//$_SESSION['HandCount'] = '0';
 						$_SESSION['GameStatus'] = 'insession';
-						for ($p = 0; $p <= $_SESSION['PlayerCount']; $p++)
+						for ($p = 0; $p < $_SESSION['PlayerCount']; $p++)
 						{
-							$_SESSION['Player'.$p]['HandRank'] = '';
+							$_SESSION['Player'][$p]['HandRank'] = '';
+							if($p > 0)
+							{
+						
+								if($_SESSION['Player'][$p]['Bank'] <= 0)
+								{
+									$_SESSION['Player'][$p]['Bank'] = 100;
+								}
+							}
 						}
 						if (!empty($_SESSION['Cards']))
 						{
@@ -284,6 +333,8 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 					}
 				break;
 				case 'shuffle':
+/* debug($_SESSION['Player'][0]['Bank']);
+debug($_SESSION['Player'][1]['Bank']); */
 					if($_SESSION['GameStatus'] != 'ended')
 					{
 						if( (!isset($_SESSION['Shuffled']) || $_SESSION['Shuffled'] === false) && 
@@ -303,26 +354,32 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 					}
 				break;
 				case 'deal':
+					$playersBank = '';
 					if($_SESSION['GameStatus'] != 'ended')
 					{
-						if(!isset($_SESSION['HandCount']) || $_SESSION['HandCount'] == 0)
+						//if(!isset($_SESSION['HandCount']) || $_SESSION['HandCount'] == 0)
+						if(!isset($_SESSION['Player'][0]['HandCount']) || $_SESSION['Player'][0]['HandCount'] === 0)
 						{
 							if(isset($_SESSION['Shuffled']) && $_SESSION['Shuffled'] === true)
 							{
 								$cards = new cards();
 								$sortedHands = $cards->deal($ante);
-								$_SESSION['HandCount'] = count($sortedHands['player0']);
-								$_SESSION['DeckCount'] = count($_SESSION['Cards']);//count($newCards); // $_SESSION['DeckCount'] - $_SESSION['HandCount'];
-								$_SESSION['PlayerHand'] = $sortedHands['player0'];//$handArray['player0'];
-								for($x=1; $x< $_SESSION['PlayerCount']; $x++)
+								$_SESSION['Player'][0]['HandCount'] = count($sortedHands['player'][0]);
+								$_SESSION['DeckCount'] = count($_SESSION['Cards']);
+								$_SESSION['PlayerHand'] = $sortedHands['player'][0];
+								
+								for($x=0; $x< $_SESSION['PlayerCount']; $x++)
 								{
-									$_SESSION['NonePlayerHands'][] = $sortedHands['player'.$x];
+									$_SESSION['Player'][$x]['Hand'] = $sortedHands['player'][$x];
+									$playersBank[] = $_SESSION['Player'][$x]['Bank'];
 								}
-								$jsonObj = ['hand' => $sortedHands['player0'],
+								$jsonObj = ['hand' => $_SESSION['Player'][0]['Hand'],
 											'deckCount' => $_SESSION['DeckCount'],
-											'handRank' => $_SESSION['Player0']['HandRank'],
-											'playerCash' => $_SESSION['Player0']['Bank'],
-											'winPool' => $_SESSION['WinPool']
+											'handCount' => $_SESSION['Player'][0]['HandCount'],
+											'handRank' => $_SESSION['Player'][0]['HandRank'],
+											'playerCash' => $playersBank, //$_SESSION['Player'][0]['Bank'],
+											'winPool' => $_SESSION['WinPool'],
+											'playerCount' => (int) $_SESSION['PlayerCount']
 											];
 								deliver_response(200,"Deal Successful", $jsonObj ); //[$handArray,$_SESSION['DeckCount']]
 							} 
@@ -354,12 +411,16 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 							if(!empty($cardList) && count($cardList) >=1)
 							{
 								$cards = new cards();
-								$newPlayerHand = $cards->discard($cardList);
-								if($newPlayerHand !== false)
+/* debug($_SESSION['Player'][0]['Hand']); */
+								//$newPlayerHand = 
+								$cards->discard($cardList, 0);
+/* debug($_SESSION['Player'][0]['Hand']); */
+								//if($newPlayerHand !== false)
+								if(count($_SESSION['Player'][0]['Hand']) < 5 )
 								{
-									$_SESSION['PlayerHand'] = $newPlayerHand;
-									$_SESSION['HandCount'] = count($_SESSION['PlayerHand']);
-									$jsonObj = ['hand' => $_SESSION['PlayerHand'], 'handCount' =>$_SESSION['HandCount']];
+									//$_SESSION['PlayerHand'] = $newPlayerHand;
+									$_SESSION['Player'][0]['HandCount'] = count($_SESSION['Player'][0]['Hand']);
+									$jsonObj = ['hand' => $_SESSION['Player'][0]['Hand'], 'handCount' =>$_SESSION['Player'][0]['HandCount']];
 									deliver_response(200,"Discard Successful", $jsonObj);
 								}
 								else
@@ -369,7 +430,7 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 							}
 							else
 							{
-								deliver_response(400,"Discard Failed -  be sure to select a card first.", NULL);
+								deliver_response(200,"Discard Failed -  be sure to select a card first.", NULL);
 							}
 						}
 					}
@@ -383,25 +444,29 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 					{
 						$cards = new cards();
 						$newCards = $_SESSION['Cards'];
-						$handArray = $_SESSION['PlayerHand'];
+						$handArray = $_SESSION['Player'][0]['Hand'];//$_SESSION['PlayerHand'];
 						$currentHandCount = count($handArray);
 						$sortedHands = array();
 						//$_SESSION['HandCount'] = $currentHandCount;
+
 						if ($currentHandCount + $count != 5)
 						{
 							deliver_response(400,"Your Current Hand plus the requested cards Must equal 5.", NULL);
 							return false;
 						}
-						$_SESSION['Player0']['HandRank'] = ''; 
-						if($cards->draw($currentHandCount, $newCards, $handArray ))
+						$_SESSION['Player'][0]['HandRank'] = ''; 
+						if($cards->draw($currentHandCount, $newCards, 0 ))
 						{
-							$sortedHands['Player0'] = sortHand($_SESSION['PlayerHand'],'Player0');
-							$_SESSION['PlayerHand'] = $sortedHands['Player0'];
+
+							//$sortedHands['Player'][0] = 
+							
+							$_SESSION['Player'][0]['Hand'] = sortHand($_SESSION['Player'][0],0);
 							$jsonObj = [
-								'hand' => $_SESSION['PlayerHand'], 
-								'handCount' =>$_SESSION['HandCount'],
+								//'hand' => $_SESSION['PlayerHand'], 
+								'hand' => $_SESSION['Player'][0]['Hand'],
+								'handCount' =>$_SESSION['Player'][0]['HandCount'],
 								'deckCount'=>$_SESSION['DeckCount'] ,
-								'handRank' =>$_SESSION['Player0']['HandRank'] 
+								'handRank' =>$_SESSION['Player'][0]['HandRank'] 
 								];
 							deliver_response(200,"Draw Successful", $jsonObj);
 						} 
@@ -416,17 +481,45 @@ echo "SID: ".SID."<br>session_id(): ".session_id()."<br>COOKIE: ".$_COOKIE["PHPS
 					}
 				break;
 				case 'placeBet':
-					if(isset($bet) && $bet > 0 && $bet <= $_SESSION['Player0']['Bank'])
+					$cards = new cards();
+					
+					/* $_SESSION['Player'][0]['Bet'] = $bet;
+					$_SESSION['Player'][0]['Bank'] -= $bet; */
+					/* $jsonObj = ['playerCash' => $_SESSION['Player'][0]['Bank']]; */
+					//deliver_response(200,"Bet was Successful", $jsonObj);
+					//$jsonObj = array();
+					$betSuccess = false;
+					for( $player = 0; $player < $_SESSION['PlayerCount']; $player++ )
 					{
-						$_SESSION['Player0']['Bet'] = $bet;
-						$_SESSION['Player0']['Bank'] -= $bet;
-						$jsonObj = ['playerCash' => $_SESSION['Player0']['Bank']];
-						deliver_response(200,"Bet was Successful", $jsonObj);
+						if($cards->placeBet($bet, $player))
+						{
+							$_SESSION['Player'][$player]['Bet'] = $bet;
+							$_SESSION['Player'][$player]['Bank'] -= $bet;
+							$_SESSION['WinPool'] += $bet; 
+							$jsonObjArray['Player'][$player]['Cash'] = $_SESSION['Player'][$player]['Bank'];
+							$betSuccess = true;
+						}
+						
+					}
+					if($betSuccess)
+					{
+						$jsonObj = [ 'PlayerCash' => $jsonObjArray, 'winPool' => $_SESSION['WinPool'] ];
 					}
 					else
 					{
-						deliver_response(400,"Bet is not a valid number.", NULL);
+						$jsonObj = '';
 					}
+					if(!empty($jsonObj))
+					{
+						deliver_response(200,"Bets were Successful", $jsonObj);
+					}
+					else
+					{
+						$jsonObj = [ 'fail' => 200];
+						deliver_response(200,"Bet is not a valid number.", $jsonObj);
+					}
+					
+					
 				break;
 				case 'call':
 					$_SESSION['GameStatus'] = 'ended';
@@ -441,18 +534,23 @@ $_SESSION['NonePlayerHands'][0] = array(array(14,'diams;','8'), array(26,'spades
 $_SESSION['NonePlayerHands'][1] = array(array(14,'spades;','4'), array(26,'hearts;','4'), array(52,'diams;','Q'),array(13,'hearts;','Q'), array(39,'spades;','Q'));
 $_SESSION['NonePlayerHands'][2] = array(array(14,'spades;','A'), array(26,'hearts;','A'), array(39,'diams;','A'), array(52,'diams;','9'),array(13,'spades;','9'));
 */// end-temp					
-					$sortedHands['player0'] = $_SESSION['PlayerHand'];
-					for($x = 1; $x < $_SESSION['PlayerCount']; $x++ )
+					/* $sortedHands['player'][0] = $_SESSION['PlayerHand']; */
+					$npcBankStatus = false;
+					$playerBankStatus = false;
+					for($x = 0; $x < $_SESSION['PlayerCount']; $x++ )
 					{
-						$sortedHands['player'.$x] = sortHand($_SESSION['NonePlayerHands'][$x-1],'Player'.$x);
-
+						$sortedHands['player'][$x] = sortHand($_SESSION['Player'][$x],$x);
+						
 					}
+
  //debug($sortedHands, true);
+					
 					$jsonObj = array();
 					$jsonObj['playerCount'] = (int) $_SESSION['PlayerCount'];
 					$jsonObj['winner'] = $_SESSION['Winner'];
-					$jsonObj['hands'][0] = $_SESSION['PlayerHand'];
-					$jsonObj['ranks'][0] = $_SESSION['Player0']['HandRank'];
+					/* $jsonObj['hands'][0] = $_SESSION['PlayerHand']; */
+					$jsonObj['ranks'][0] = $_SESSION['Player'][0]['HandRank'];
+
 /* debug($_SESSION['Player0']); */					
 
 /* possible ranks
@@ -480,8 +578,8 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 
 					for($x = 0; $x < $_SESSION['PlayerCount']; $x++ )
 					{
-						$jsonObj['hands'][$x] = $sortedHands['player'.$x];
-						$jsonObj['ranks'][$x] = $_SESSION['Player'.$x]['HandRank'];
+						$jsonObj['hands'][$x] = $sortedHands['player'][$x];
+						$jsonObj['ranks'][$x] = $_SESSION['Player'][$x]['HandRank'];
 					}
 /* debug($jsonObj['ranks']); */
 					// find winner in the sortedHands Array
@@ -489,9 +587,40 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 					//'0'; // 0-4 player is player 0 ..  Create function getWinner($sortedHands) returns the index of the hand that won;
 					
 					$_SESSION['Winner'] = findWinner($jsonObj['hands'],$jsonObj['ranks']);
+
 //debug($_SESSION['Winner']);
-//die();					
+//die();			
+
+/* debug($_SESSION['WinPool']); */		
 					$jsonObj['winner'] = $_SESSION['Winner']; // player index
+					
+					$_SESSION['Player'][$jsonObj['winner']]['Bank'] += $_SESSION['WinPool'];
+					
+					for($x = 0; $x < $_SESSION['PlayerCount']; $x++ )
+					{
+						if($x === 0)
+						{
+							if($_SESSION['Player'][0]['Bank'] > 0)
+							{
+								$playerBankStatus = true;
+							}
+						}
+						else
+						{
+							if($_SESSION['Player'][$x]['Bank'] > 0)
+							{	
+								$npcBankStatus = true;
+								break;
+							}
+
+						}
+					}
+					$jsonObj['playerBankStatus'] = $playerBankStatus;
+					$jsonObj['npcBankStatus'] = $npcBankStatus;
+					
+					
+					$_SESSION['WinPool'] = 0;
+					$jsonObj['winnerPool'] = $_SESSION['Player'][$jsonObj['winner']]['Bank'];
 					if(count($jsonObj) > 0)
 					{
 						deliver_response(200,"Call was Successful", $jsonObj);
@@ -1225,6 +1354,10 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 	
 	function rankedHands($newArray,$player)
 	{
+/* echo "Player";
+debug($player);
+echo "<br>newArray<br>";
+debug($newArray); */		
 		// test for:
 		// 1. Royal Flush
 		// 2. Straight Flush
@@ -1238,7 +1371,7 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 		//10. High Card
 		$suite = array();
 		$rank = array();
-		$_SESSION[$player]['HandRank'] ='';
+		$_SESSION['Player'][$player]['HandRank'] ='';
 		foreach($newArray as $key => $card){
 			$suite[] = $card['suite'];
 			$rank[] = $card['rank'];
@@ -1312,7 +1445,7 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 				$handCountArray['kings'] === 1
 			){
 				$royalFlush = true;
-				$_SESSION[$player]['HandRank'] = 'Royal Flush';
+				$_SESSION['Player'][$player]['HandRank'] = 'Royal Flush';
 				return; 
 			}
 			if( $rank[1] == $rank[0]+1 &&
@@ -1321,11 +1454,11 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 				$rank[4] == $rank[3]+1)
 			{
 				$straightFlush = true;
-				$_SESSION[$player]['HandRank'] = 'Straight Flush';
+				$_SESSION['Player'][$player]['HandRank'] = 'Straight Flush';
 				return;
 			} else {
 				$flush = true;
-				$_SESSION[$player]['HandRank'] = 'Flush';
+				$_SESSION['Player'][$player]['HandRank'] = 'Flush';
 				return;
 			}
 		}
@@ -1345,7 +1478,7 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 			$handCountArray['kings'] == 4 
 		){
 			$fourOfAKind = true;
-			$_SESSION[$player]['HandRank'] = 'Four of a kind';
+			$_SESSION['Player'][$player]['HandRank'] = 'Four of a kind';
 			return;
 		}
 		if(	
@@ -1380,11 +1513,11 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 			)
 			{
 				$fullHouse = true;
-				$_SESSION[$player]['HandRank'] = 'Full House';
+				$_SESSION['Player'][$player]['HandRank'] = 'Full House';
 				return;
 			} else {
 				$threeOfAKind = true;
-				$_SESSION[$player]['HandRank'] = 'Three of a kind';
+				$_SESSION['Player'][$player]['HandRank'] = 'Three of a kind';
 				return;
 			}
 		}
@@ -1396,7 +1529,7 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 			$rank[4] == $rank[3]+1 
 		){
 			$straight = true;
-			$_SESSION[$player]['HandRank'] = 'Straight';
+			$_SESSION['Player'][$player]['HandRank'] = 'Straight';
 			return;
 		} 
 		$countPairs = 0;
@@ -1410,34 +1543,46 @@ $_SESSION['Player4']['HandRank'] = 'Full House';
 		if ( $countPairs == 2)
 		{
 			$twoPair = true;
-			$_SESSION[$player]['HandRank'] = 'Two Pair';
+			$_SESSION['Player'][$player]['HandRank'] = 'Two Pair';
 			return;
 		} 
 		if ($countPairs === 1)
 		{
 			$onePair = true;
-			$_SESSION[$player]['HandRank'] = 'One Pair';
+			$_SESSION['Player'][$player]['HandRank'] = 'One Pair';
 			return;
 		}
 		
 		$highCard = true;
-		$_SESSION[$player]['HandRank'] = 'High Card';
+		$_SESSION['Player'][$player]['HandRank'] = 'High Card';
 		return;
 	}
+	
 	function sortHand($handArray,$player)
 	{
+/* echo "<br>SortHand ===> HandArray <br>";
+debug($handArray); */
 		$newArray = array();
-		foreach($handArray as $key => $value){
+		foreach($handArray['Hand'] as $key => $value){
+/* debug($value,true); */
 			$newArray[]=['index'=>$value[0], 'suite'=>swapSuiteSymbol($value[1],true), 'rank'=>swapRank($value[2],true)];
 		}
+/* echo "<br>SortHand ===> NewArray <br>";
+debug($newArray); */
  		//usort($newArray, sortCallBack('suite'));
 		usort($newArray, sortCallBack('rank'));
+/* echo "<br>SortHand ===> usort ===> NewArray <br>";
+debug($newArray); */
 		// rank each hand.
  		rankedHands($newArray,$player);
+/* echo "<br>SortHand ===> RankedHands NewArray <br>";
+debug($newArray); */		
 		$handArray = array();
 		foreach($newArray as $key => $value){
 			$handArray[]=[$value["index"], swapSuiteSymbol($value["suite"],false), swapRank($value["rank"],false)];
 		}
+/* echo "<br>SortHand ===> HandArray <br>";
+debug($handArray); */
 		return $handArray;
 	}
 	function deliver_response($status, $status_message, $data)

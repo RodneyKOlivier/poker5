@@ -12,6 +12,15 @@
 <meta name="Five-Card-Draw " content="poker 5 card draw">
 <meta name="keywords" content="poker 5 card draw">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+
+
 <!--[if lt IE 9]>
 	<script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
 <![endif]-->
@@ -33,43 +42,41 @@
 			<li><a href="#" class="button" id="newGame" >New Game</a></li>
 			<!-- <li><a href="#" class="button" id="shuffle" >Shuffle</a></li>
 			<li><a href="#" class="button" id="deal" >Deal</a></li> -->
-			<li><a href="#" class="button" id="discard" >Discard</a></li>
-			<li><a href="#" class="button" id="draw" >Draw</a></li>
-			<li><a href="#" class="button" id="call" >Call</a></li>
-			<li><a href="#" class="button" disabled="disabled" id="nextRound" >Next Round</a></li>
-			<li><a href="#" class="button" id="help" >User Guide</a></li>
+			<li><a href="#" id="standPat" >Stand Pat</a></li>
+			<li><a href="#" id="discard" >Discard</a></li>
+			<li><a href="#" id="draw" >Draw</a></li>
+			<li><a href="#" id="call" >Call</a></li>
+			<li><a href="#" id="nextRound" >Next Round</a></li>
+			<li><a href="#" id="help" >User Guide</a></li>
 			
 		</ul>
 	</nav>
 	
 	<article id="handBlock">
-	<h3>Player 1</h3>
+		<h3>Player 1</h3>
 		<div class="card-back card" id="card0" ></div>
 		<div class="card-back card" id="card1" ></div>
 		<div class="card-back card" id="card2" ></div>
 		<div class="card-back card" id="card3" ></div>
 		<div class="card-back card" id="card4" ></div>
 	</article>
-	<article id="callBlock" class="hidden">
-		<div id="player0"></div>
-		<div id="player1"></div>
-		<div id="player2"></div>
-		<div id="player3"></div>
-		<div id="player4"></div>
-	</article>
 	<footer>
 		<article class="statusBlock shadowBox_Inset "><!-- borderPlus25 -->
 			<p>
 				<label for="bet"><span id="betLable">Ante: </span><input class="input" id="bet" type="text" name="betQuantity" min="1" max="100" value="2"></label>
-				<button id="submitBet"  class="button"  type="button" >Place Bet</button>
+				<button id="submitBet" class="button"  type="button" >Place Bet</button>
 				<label for="numberOfPlayers">Number of Players: <input class="input" id="numberOfPlayers" type="text" name="quantity" min="2" max="6" value="2"></label>
 				<span >Coins In the Bank:</span><span id="playerCash">100</span>
 			</p>
 			<p id="status" class="status_message"></p>
-			<p class="status"><span id="deckCount"></span><span>&nbsp;|&nbsp;</span><span id="handCount"></span>&nbsp;|&nbsp;<span id="handRank"></span></p>
+			<p class="status"><span id="deckCount"></span><span>&nbsp;|&nbsp;</span><span id="handCount"></span>&nbsp;|&nbsp;<span id="handRank"></span>&nbsp;|&nbsp;<span id="winpool"></span></p>
 			<p class="hidden" id="statusMessage"></p>
 			<div id="npcContainer">
-			
+				<div id="sPlayer2" class="playerStatus hidden"></div>
+				<div id="sPlayer3" class="playerStatus hidden"></div>
+				<div id="sPlayer4" class="playerStatus hidden"></div>
+				<div id="sPlayer5" class="playerStatus hidden"></div>
+				<div id="sPlayer6" class="playerStatus hidden"></div>
 			</div>
 			<p class="copyright">code:copyright©2014 Rodney Olivier images:copyright©2014 Jeanette A Gogan-Olivier</p>
 		</article>

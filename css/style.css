@@ -129,9 +129,11 @@ span.ui-button-text
 	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
 }
 
-.hidden{display:none;}
-
-.status {font-size:90%;}
+.status 
+{
+	font-size:90%;
+	margin: 0 auto 5px;
+}
 
 div article#helpText {
 	text-align: left;
@@ -175,6 +177,9 @@ div article#helpText {
 	border:1px solid #C5A762;
 	width:auto;
 	height:30px;
+	padding-left: 5px;
+	padding-right:5px;
+	margin-top:-5px;
 	line-height:25px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -184,6 +189,22 @@ div article#helpText {
 	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
 	
 }
+.error
+{
+	color:#FC070F;
+	border: 1px solid #BA1616;
+	width:25%;
+	font-size:1.2em;
+	margin: 0 auto;
+	background-color:#F5D7C5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+	-webkit-box-shadow: inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
+}
+.hidden{display:none;}
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 400px) and (max-width : 800px)
 {
@@ -814,7 +835,8 @@ div article#helpText {
 		display: inline-block; 
 		vertical-align: top; 
 		line-height: 84px;
-		margin-right: 2px
+		margin-right: 2px;
+		width:200px;
 	}
 	div.winner 
 	{
@@ -829,6 +851,7 @@ div article#helpText {
 		line-height: 85px;
 		vertical-align:top;
 		margin-left:2px;
+		width:200px;
 	}
 	div.suiteLeft
 	{
@@ -903,6 +926,11 @@ div article#helpText {
 	/* html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div.ui-dialog-content.ui-widget-content article#helpText */
 	{
 		opacity: 1.0;
+	}
+	
+	html body div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-dialog-buttons.ui-draggable.ui-resizable div.ui-dialog-content.ui-widget-content article#helpText
+	{
+		min-width:850px;
 	}
 	
 }
