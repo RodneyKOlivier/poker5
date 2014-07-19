@@ -15,6 +15,11 @@ console.log(window.screen.height);*/
 	$('#numberOfPlayers').spinner();
 	$('#bet').spinner();//.spinner("disable");;
 	//$('.button').button();
+	
+	// audio element
+	audioElement = document.createElement('audio');
+	audioElement.setAttribute('autoplay', 'autoplay');
+	
 	$( "input[type=submit], a, button" )
 	.button()
 	.click(function( event ) {
@@ -76,7 +81,7 @@ console.log(window.screen.height);*/
 	{	betVal = $('#bet').val();
 		if(parseInt(betVal) === 0)
 		{
-			ringBell();
+			playAudio();
 			$('#bet').fadeOut(1000).fadeIn(1000).effect("highlight",{color:"#ff0000"},3000);
 			$('#status').html('You must Ante at least 1 coin');
 			$('#status').addClass('error');
@@ -179,6 +184,7 @@ $("#standPat").button("disable");
 				$('#sPlayer'+(x+1)).html('Player'+(x+1)+' Stat:_____');
 				$('#sPlayer'+(x+1)).removeClass('hidden');
 			}
+			//playAudio('audio/cardFan2.mp3');//cardOpenPackage1.mp3
 			/* $('#submitBet').removeAttr('disabled');
 			$('#submitBet').removeClass('ui-state-disabled'); */
 		});
@@ -189,11 +195,15 @@ $("#standPat").button("disable");
 		betVal = $('#bet').val();
 		if(parseInt(betVal) === 0)
 		{
-			ringBell();
-			$('#submitBet').fadeOut(2000).fadeIn(1000);
+			playAudio();
+			$('#bet').fadeOut(1000).fadeIn(1000).effect("highlight",{color:"#ff0000"},3000);
+			$('#status').html('You must Bet at least 1 coin');
+			$('#status').addClass('error');
 		}
 		else
 		{
+			$('#status').html('');
+			$('#status').removeClass('error');
 			submitBet();
 		}
 		/* .effect( function() 
@@ -222,14 +232,18 @@ $("#standPat").button("disable");
 	
 	function discard()
 	{
-		$("#discard").button("disable");
-		$("#call").button("disable");
+	
 		deckCount = $('#deckCount').text();
 		deckCount = deckCount.split(':');
 		deckCount = deckCount[1];
 		cardList = $('.cardId:checkbox:checked');
 		if(cardList.length < 5 && cardList.length > 0 && deckCount > 0 && (deckCount - cardList.length >= 0) )
 		{
+			$("#discard").button("disable");
+			$("#call").button("disable");
+			$("#standPat").button("disable");
+			$('#status').html('');
+			$('#status').removeClass('error');
 			var listOfCards = '';
 			$.each(cardList, function( key,value) {
 				listOfCards += cardList[key].value +','
@@ -255,12 +269,22 @@ $("#standPat").button("disable");
 			
 			});
 		}
+		else
+		{
+			playAudio();
+			
+			$('#status').html('You must select at least 1 card');
+			$('#status').addClass('error');
+			$('#status').fadeOut(1000).fadeIn(1000).effect("highlight",{color:"#ff0000"},3000);
+		}
 	}
 	
 	function draw()
 	{
 		$("#discard").button("disable");
 		$("#draw").button("disable");
+		$("#standPat").button("enable");
+		$("#submitBet").button("enable");
 		handCount = $('#handCount').text();
 		handCount = handCount.split(':');
 		handCount = 5 - handCount[1];
@@ -287,17 +311,22 @@ $("#standPat").button("disable");
 		});
 	}
 	
-	function ringBell()
+	function playAudio(source)
 	{
-		var audioElement = document.createElement('audio');
-		audioElement.setAttribute('src', 'audio/ding.mp3');
-		audioElement.setAttribute('autoplay', 'autoplay');
+		if(!source){
+			source = 'audio/ding.mp3';
+		}
+		//var audioElement = document.createElement('audio');
+		audioElement.setAttribute('src', source);
+		//audioElement.setAttribute('autoplay', 'autoplay');
 		//audioElement.load()
 		$.get();
 		audioElement.addEventListener("load", function() {
 			audioElement.volume = 0.25;
-			audioElement.play();
+			//audioElement.play();
 		}, true);
+		return audioElement;
+		
 	}
 	
 	function submitBet()
@@ -305,10 +334,16 @@ $("#standPat").button("disable");
 		betVal = $('#bet').val();
 		if(parseInt(betVal) === 0)
 		{
-			ringBell();
-			$('#submitBet').fadeOut(2000).fadeIn(1000);
+			playAudio();
+			$('#bet').fadeOut(1000).fadeIn(1000).effect("highlight",{color:"#ff0000"},3000);
+			$('#status').html('You must Bet at least 1 coin');
+			$('#status').addClass('error');
 			return false;
 		}
+		$('#status').html('');
+		$('#status').removeClass('error');
+		$("#standPat").button("disable");
+		
 		$.get('cards.php/placeBet?bet='+betVal, function(data) {
 			var betData = jQuery.parseJSON(data);
 			_message = betData.status_message;
@@ -317,7 +352,7 @@ $("#standPat").button("disable");
 				if(_data.fail)
 				{
 					$('#status').html(_message);
-					ringBell();
+					playAudio();
 				}
 				else
 				{
@@ -341,9 +376,9 @@ $("#standPat").button("disable");
 		}).always(function(){
 			$('#status').html(_message);
 			$("#discard").button("enable");
-			/* $("#draw").button("enable"); */
 			$("#call").button("enable");
 			$('#bet').val(0);
+			$("#submitBet").button("disable");
 		});
 	}
 	
@@ -434,23 +469,35 @@ $("#standPat").button("disable");
 	
 	function playLooseAnimation()
 	{
-		ringBell();
+		playAudio();
 		alert('Loose');	
 	}
 	
 	function playWinAnimation()
 	{
-		ringBell();
+		playAudio();
 		x=0;	
-		ringBells = setInterval(function(){
-			ringBell();
+		playAudios = setInterval(function(){
+			playAudio();
 			x ++;
 			if( x >= 2)
 			{
-				clearInterval(ringBells);
+				clearInterval(playAudios);
 			}
 		},2000);
 	//	alert('Win');
+	}
+	function flipCardsBack(v)
+	{
+		for(x = 0; x < 5; x++)
+		{
+			$('#card'+x).html('');
+			$('#card'+x).removeClass('card-front').addClass('card-back');
+			v++;
+			if(v >= 5){
+				return v;
+			}
+		}
 	}
 	
 	function nextRound()
@@ -458,10 +505,14 @@ $("#standPat").button("disable");
 		betVal = $('#bet').val();
 		if(parseInt(betVal) === 0)
 		{
-			ringBell();
+			playAudio();
 			$('#bet').fadeOut(1000).fadeIn(1000).effect("highlight",{color:"#ff0000"},3000);
+			$('#status').html('You must Ante at least 1 coin');
+			$('#status').addClass('error');
 			return false
 		}
+		$('#status').html('');
+		$('#status').removeClass('error');
 		
 		$("#standPat").button("enable");
 		$("#discard").button("disable");
@@ -485,6 +536,8 @@ $("#standPat").button("disable");
 			$('#submitBet').removeAttr('disabled');
 			$('#submitBet').removeClass('ui-state-disabled');
 		});
+			
+		
 	}
 	
 	function shuffle()
@@ -502,10 +555,9 @@ $("#standPat").button("disable");
 			
 		});
 	}
-	
+
 	function deal()
 	{
-		
 		// This should be called after Shuffle.
 		$.get( "cards.php/deal?ante="+$('#bet').val(), function( data ) {
 		var cardData = jQuery.parseJSON(data);
@@ -527,8 +579,22 @@ $("#standPat").button("disable");
 			{
 				$('#sPlayer'+(x+1)).html('Player'+(x+1)+' Status: Bank: '+_data.playerCash[x]);
 			}
-			$('.card').removeClass('card-back').addClass('card-front');
-			buildCard (_data);
+			flipCardsBack(0);
+			x = 0;
+			buildCardAnimation = setInterval(function(){
+				//$('.card').removeClass('card-back').addClass('card-front');
+				
+				//$('#card'+x).removeClass('card-back').slideUp(200).addClass('card-front').slideDown(200);
+				$('#card'+x).removeClass('card-back').addClass('card-front');
+				$.when(oneCard(_data, x)).done(function(x){
+					playAudio('audio/cardPlace1.mp3');
+				});
+				x++;
+				if(x >= 5){
+				clearInterval(buildCardAnimation);
+				}
+			}, 1000);
+			//buildCard (_data);
 			
 		}
 		}).fail(function(){
@@ -544,7 +610,34 @@ $("#standPat").button("disable");
 		
 		
 		
-	}	
+	}
+
+	function buildAnimation(_data)
+	{
+		// add loading bar.
+						
+/* 			var v = 0;
+			$.when(flipCardsBack(v)).done(function(v){
+			if(v == 5)
+			{
+			
+
+			else
+				console.log(v); // this should not happen but I will leave it now in case I need to debug later.
+			}); */
+			//flipCardsBack(0);
+/* 			source = 'audio/cardShuffle.mp3';
+			$.when(playAudio(source)).done(function (audioElement){
+				audioElement.addEventListener('ended',function()
+				{
+console.log(audioElement.ended);
+				}, false);
+			}).done(function(_data){
+			
+			}); */
+	}
+
+	
 	function buildCall (hand, rank,x,winner,winnerPool)
 	{
 /* console.log('winner='+winner); */		
@@ -635,39 +728,55 @@ console.log(hand[y]);
 		}
 		return cardColor;
 	}
+	
+	function oneCard(_data, x)
+	{
+		
+		/* $.when(playAudio('audio/cardPlace1.mp3')).done(function(audioElement){
+					audioElement.addEventListener('ended',function()
+					{
+						oneCard(_data, x);
+					}, false);
+				}); */
+		
+		var cardKey   = _data.hand[x][0];
+		var cardSuite = _data.hand[x][1];
+		var cardValue = _data.hand[x][2];
+		cardColor = cardColorFunc(cardSuite);
+		cardSuite = '&'+cardSuite;
+		$('#card'+x).html(
+			'<label for="cardId'+x+'" id="labelId'+x+'">'+
+			'<div class="suiteLeft '+cardColor+'">'+cardSuite+'</div>'+
+			'<div class="suiteCenter '+cardColor+'">'+cardValue+'</div>'+
+			'<div class="suiteRight '+cardColor+'">'+cardSuite+'</div>'+
+			'</label>'+
+			'<input type="checkbox" name="cardId'+x+'" id="cardId'+x+'" class="cardId" value="'+cardKey+'" />'
+		);
+		setClick();
+		return true;
+	}
+	
 	function buildCard (_data)
 	{
 //console.log(_data);
 		for ( x = 0; x < _data.hand.length; x++){
-			var cardKey   = _data.hand[x][0];
-			var cardSuite = _data.hand[x][1];
-			var cardValue = _data.hand[x][2];
-//console.log(cardSuite);
-			cardColor = cardColorFunc(cardSuite);
-			
-			cardSuite = '&'+cardSuite;
-//console.log(cardSuite);
-			$('#card'+x).html(
-				'<label for="cardId'+x+'" id="labelId'+x+'">'+
-				'<div class="suiteLeft '+cardColor+'">'+cardSuite+'</div>'+
-				'<div class="suiteCenter '+cardColor+'">'+cardValue+'</div>'+
-				'<div class="suiteRight '+cardColor+'">'+cardSuite+'</div>'+
-				'</label>'+
-				'<input type="checkbox" name="cardId'+x+'" id="cardId'+x+'" class="cardId" value="'+cardKey+'" />'
-			);
-			setClick();
+			$.when(	oneCard(_data,x)).promise().done(function(){playAudio('audio/cardPlace1.mp3');});
 		}
-		function setClick() {
-			$("article div").on('click', function(e){
-				var isChecked = $('#'+ this.id +' input:checkbox' ).is(':checked');
-				if(isChecked){
-					$('#'+this.id).addClass('cardLiHi');
-				} else {
-					$('#'+this.id).removeClass('cardLiHi');
-				}
-			});
-		}
+		
 	}
+	
+	function setClick()
+	{
+		$("article div").on('click', function(e){
+			var isChecked = $('#'+ this.id +' input:checkbox' ).is(':checked');
+			if(isChecked){
+				$('#'+this.id).addClass('cardLiHi');
+			} else {
+				$('#'+this.id).removeClass('cardLiHi');
+			}
+		});
+	}
+	
 	function help()
 	{
 		var _html ="";
