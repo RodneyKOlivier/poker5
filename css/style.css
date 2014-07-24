@@ -130,9 +130,9 @@ span.ui-button-text
 	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
 }
 
-.status 
+.status_message 
 {
-	font-size:90%;
+	font-size:.9em;
 	margin: 0 auto 5px;
 }
 
@@ -189,6 +189,9 @@ div article#helpText {
 	-moz-box-shadow:    inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
 	box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75);
 	
+}
+p, pre {
+    margin: .5em 0;
 }
 .error
 {
@@ -349,7 +352,7 @@ div article#helpText {
 	/* Styles */
 	body, header, nav, article, footer 
 	{
-		font-size: 0.92em;
+		font-size: 0.85em;
 		font-weight: bold;
 		margin: 0 auto;
 		min-width: 600px;
@@ -360,18 +363,18 @@ div article#helpText {
 	{
 		margin:0 auto;
 		width:640px;
-		height:480px;
+		height:430px;
 	}
 	#centerElement
 	{
 		/* padding-left:10px;
 		width:99%;
 		color:#000; */
-		 background-image: url("../image/2MoonsAtTwilight640x480.png");
+		 background-image: url("../image/2MoonsAtTwilight640x430.png");
 		background-repeat: no-repeat;
 		margin:0 auto; 
 		width:640px;
-		height:480px;
+		height:430px;
 		/*border:5px solid #FCE78C;*/
 		border:5px solid red;
 		-webkit-border-radius: 10px;
@@ -382,11 +385,26 @@ div article#helpText {
 		box-shadow:         inset 0px 0px 17px 6px rgba(50, 50, 50, 0.75); 
 	}
 	
+	h1 
+	{
+	    margin: 0.6em 0;
+	}
+	
+	h3 
+	{
+		font-size: 1.17em;
+		margin: 1em 0;
+	}
+	
+	dl, menu, ol, ul {
+		margin: .9em 0;
+	}
 	.input {
 		width:60px; 
-		height:22px; 
+		height:20px; 
 		border-radius: 3px;
 	}
+	
 	html body div#container div#centerElement header h1
 	{
 		font-size: 1.9em;
@@ -474,11 +492,16 @@ div article#helpText {
 	{
 		border:3px solid rgba(252,231,140,0.7);
 		width: 97%;
-		margin-top:50px;
+		margin-top:5px;
 		color:rgba(252,231,140,0.9);
 		text-shadow: 2px 0px 6px rgba(0, 0, 0, 1);
 	}
 	
+	
+	.playerStatus 
+	{
+		height: 25px;
+	}
 	article#handBlock div
 	{
 		font-size: 1.5em;

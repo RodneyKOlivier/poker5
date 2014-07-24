@@ -254,11 +254,20 @@ $("#standPat").button("disable");
 				_data = cardData.data;
 				_message = cardData.status_message;
 				if(_data){
+					cardHtml = 
+					'<label>'+
+					'<div class="suiteLeft">&nbsp;</div>'+
+					'<div class="suiteCenter">&nbsp;</div>'+
+					'<div class="suiteRight">&nbsp;</div>'+
+					'</label>'+
+					'<input  class="cardId" type="checkbox">';
+					
 					for ( x = 0; x < 5; x++){
-						$('#card'+x).html('');
+						$('#card'+x).html(cardHtml);
 						$('#card'+x).removeClass('cardLiHi');
 					}
 					$('#handCount').text("Hand Count: "+_data.hand.length);
+					$('#deckCount').text("Deck Count: "+_data.deckCount);
 					buildCard (_data);
 				}
 				$('#status').html(_message);
