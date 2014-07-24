@@ -17,9 +17,15 @@ I will write more information about the REST service in a different article but 
 
 =====
 Items Completed.
+
 1.) User Interface. (ALPHA LEVEL COMPLETE)
+
 2.) Rest Service (ALPHA LEVEL COMPLETE)
+
 3.) Media Queries for Hi-Res Desktop and Smal Tablet-Landscape
 
+
+
 Items that need to be completed.
+
 1.) Finish Response Media Query's for Smaller devices and small Tablet-Portrate.
