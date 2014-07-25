@@ -14,3 +14,18 @@ Together we both enjoy writing web-sites and I enjoy writing web applications as
 Recently I was searching for work and was provided a challenge to write a REST service for an obscure process and it occurred to me that I could write a card game using HTML5, JavaScript and a REST service.  Since I am versed in PHP it was the best choice (in respect to my current skill set) in which to write a REST service.
 
 I will write more information about the REST service in a different article but for now let it suffice to say that the Service (being my first of this type) is still in Alpha development so any errors in logic or implementation are to be expected.
+
+=====
+Items Completed.
+
+1.) User Interface. (ALPHA LEVEL COMPLETE)
+
+2.) Rest Service (ALPHA LEVEL COMPLETE)
+
+3.) Media Queries for Hi-Res Desktop and Smal Tablet-Landscape
+
+
+
+Items that need to be completed.
+
+1.) Finish Response Media Query's for Smaller devices and small Tablet-Portrate.
